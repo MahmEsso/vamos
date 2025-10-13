@@ -1,0 +1,40 @@
+@font-face {
+    font-family: 'Sink';
+    src: url('SinkRegular.eot');
+    src: url('SinkRegular.eot?#iefix') format('embedded-opentype'),
+        url('SinkRegular.woff2') format('woff2'),
+        url('SinkRegular.woff') format('woff'),
+        url('SinkRegular.ttf') format('truetype'),
+        url('SinkRegular.svg#SinkRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+@font-face {
+    font-family: 'Acumin Pro Semibold';
+    src: url('AcuminPro-Semibold.eot');
+    src: url('AcuminPro-Semibold.eot?#iefix') format('embedded-opentype'),
+        url('AcuminPro-Semibold.woff2') format('woff2'),
+        url('AcuminPro-Semibold.woff') format('woff'),
+        url('AcuminPro-Semibold.ttf') format('truetype'),
+        url('AcuminPro-Semibold.svg#AcuminPro-Semibold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Acumin Pro Regular';
+    src: url('AcuminPro-Regular.eot');
+    src: url('AcuminPro-Regular.eot?#iefix') format('embedded-opentype'),
+        url('AcuminPro-Regular.woff2') format('woff2'),
+        url('AcuminPro-Regular.woff') format('woff'),
+        url('AcuminPro-Regular.ttf') format('truetype'),
+        url('AcuminPro-Regular.svg#AcuminPro-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
