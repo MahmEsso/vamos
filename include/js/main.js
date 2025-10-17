@@ -94,3 +94,80 @@ function letterCarouselRight(parent_cls, child_cls) {
 		}
 	});
 }
+
+
+
+
+
+const hotspots = document.getElementById('hotspots');
+const bigLabel = document.getElementById('bigLabel');
+
+const isArabic = document.documentElement.getAttribute('dir') === 'rtl';
+
+function markerLabel(m) {
+	// prefer arabicName when page direction is RTL/Arabic and arabicName exists
+	if (isArabic && m.arabicName) return m.arabicName;
+	return m.name;
+}
+
+function createMarker(m) {
+	const dot = document.createElement('button');
+	dot.className = 'dot';
+	dot.style.left = m.x + '%';
+	dot.style.top  = m.y + '%';
+	const label = markerLabel(m);
+	dot.setAttribute('aria-label', label);
+	dot.title = label; // hint
+	dot.addEventListener('click', () => onMarkerClick(m));
+	dot.addEventListener('keydown', (e) => {
+		if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onMarkerClick(m); }
+	});
+
+	const tip = document.createElement('div');
+	tip.className = 'tooltip';
+	tip.textContent = label;
+
+	hotspots.appendChild(dot);
+	hotspots.appendChild(tip);
+}
+
+function onMarkerClick(m){
+	// مثال: إظهار لابل كبيرة + تنفيذ أكشن
+	showLabel(m);
+	// افتح لينك/مودال… إلغاء التعليق حسب حاجتك
+	// window.location.href = m.url;
+	// أو dispatch event:
+	// document.dispatchEvent(new CustomEvent('map:marker', { detail: m }));
+}
+
+function showLabel(m){
+	bigLabel.style.left = m.x + '%';
+	bigLabel.style.top  = (m.y - 5) + '%'; // ارفعها شوي فوق النقطة
+	const label = markerLabel(m);
+	// if the label is Arabic, don't force uppercase (to avoid breaking Arabic script)
+	bigLabel.querySelector('span').textContent = isArabic ? label : label.toUpperCase();
+	bigLabel.style.display = 'flex';
+}
+
+// رسم كل النقاط
+MARKERS.forEach(createMarker);
+
+/* // مثال: إظهر “ALGERIA” في البداية (اختياري)
+showLabel(MARKERS.find(d => d.id === 'algeria')); */
+
+// إغلاق اللابل
+bigLabel.querySelector('.label-close').addEventListener('click', () => {
+	bigLabel.style.display = 'none';
+});
+
+// تحكّم في حجم النقاط (اختياري)
+const root = document.documentElement.style;
+document.getElementById('bigger').onclick  = () => root.setProperty('--dot-size',  (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--dot-size')) + 4) + 'px');
+document.getElementById('smaller').onclick = () => root.setProperty('--dot-size',  Math.max(8, parseInt(getComputedStyle(document.documentElement).getPropertyValue('--dot-size')) - 4) + 'px');
+
+// دعم لمس: إخفاء/إظهار التولتيب بالضغط خارجها
+document.addEventListener('click', (e)=>{
+	if(!e.target.classList.contains('dot') && !bigLabel.contains(e.target)){
+		bigLabel.style.display = 'none';
+	}
+}, {capture:true});

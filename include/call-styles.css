@@ -168,6 +168,50 @@ a:hover, a:active, a:focus{text-decoration:none;color:var(--sc);}
 
 .product-can-con img{max-height:30vh;}
 
+.hero-title.small-title{font-size:36px;margin:0;}
+.contact-header{display:flex;gap:42px;justify-content:center;align-items: center;margin:60px 0;}
+.contact-header img{max-height:78px;max-width:100%;}
+
+.map-section{overflow:hidden;margin:90px 0;}
+:root{--dot-size: 25px;--dot-outline: 3px;--accent: #ff3b30;--label-bg: #ff3b30;--label-color: #fff;}
+.map-wrap{inline-size: 100vw;aspect-ratio: 16 / 9;margin-inline:auto;background:#00a6d6;position:relative;overflow:hidden;}
+.map-wrap img{inset:0; position:absolute; block-size:100%; inline-size:100%; object-fit:cover; user-select:none; pointer-events:none;}
+.hotspots{ position:absolute; inset:0; }
+.dot{position:absolute;inline-size:var(--dot-size);block-size:var(--dot-size);border-radius:50%;background:var(--accent);border: none;/* box-shadow:0 0 0 var(--dot-outline) rgba(0,0,0,.12); */transform:translate(-50%, -50%);cursor:pointer;transition:transform .15s ease, box-shadow .15s ease;outline:none;}
+.dot:focus-visible, .dot:hover{box-shadow:0 0 0 calc(var(--dot-outline) + 2px) rgba(0,0,0,.2);transform:translate(-50%, -50%) scale(1.07);}
+.tooltip{position:absolute;transform:translate(-50%, -120%);background:#111; color:#fff;font-size:12px; line-height:1; padding:.45rem .6rem;border-radius:.5rem;white-space:nowrap;pointer-events:none;opacity:0; translate:0 .25rem;transition:opacity .12s ease, translate .12s ease;font-family:var(--font-regular) !important;}
+.dot:hover + .tooltip,.dot:focus-visible + .tooltip { opacity:1; translate:0 0; }
+.label{position:absolute;display:flex; align-items:center; gap:.5rem;background:var(--label-bg); color:var(--label-color);padding:.65rem .9rem; border-radius:1.2rem;font-weight:800; letter-spacing:.5px;box-shadow:0 8px 20px rgba(0,0,0,.2);transform:translate(-50%, -50%);pointer-events:none;min-inline-size:110px; justify-content:center;}
+.label::after{content:"";position:absolute; inset-block-start:100%; inset-inline-start:50%;translate:-50% -2px;border:10px solid transparent;border-block-start-color:var(--label-bg);}
+.label-close{pointer-events:auto;margin-inline-start:.25rem;border:none; background:transparent; color:#fff;font-size:18px; line-height:1; cursor:pointer;}
+.controls{display:none;position:absolute;inset-block-start: 24px;inset-inline-end: 36px;/* display:flex; */gap:.5rem;z-index:3;}
+.resize-btn{border:none;background:#fff;padding: 10px 14px 8px;border-radius:.6rem;box-shadow:0 2px 8px rgba(0,0,0,.15);cursor:pointer;width: 42px;font-size: 20px;line-height: 24px;text-align: center;}
+
+.contact-form-section{padding-bottom:120px;}
+.contact-form-section .hero-title.small-title{font-size:28px;margin:0;}
+.contact-details{font-family:var(--font-header);font-size:28px;margin-top:60px;text-transform:uppercase;}
+.contact-details .everbrook-logo{margin-bottom:48px;}
+.contact-field{margin-bottom:30px;}
+.contact-label{color:var(--blue);font-size:36px;margin-bottom:10px;}
+.contact-value{max-width:400px;}
+
+.contact-form{margin-top:60px;}
+.form-control{background-color:#0102021A !important;border:none;box-shadow:none !important;font-size:36px;color:#000;font-family:var(--font-header);border-radius:18px;padding:8px 20px;}
+textarea.form-control{font-family:var(--font-semibold);}
+.form-control::placeholder{color:#01020233;text-transform:uppercase;font-family:var(--font-header);}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {background-color:#0102021A !important;-webkit-box-shadow: 0 0 0px 1000px #000 inset;box-shadow: 0 0 0px 1000px #000 inset;-webkit-text-fill-color: #000 !important;transition: background-color 5000s ease-in-out 0s;}
+.submit-btn{clip-path:polygon(0 21%, 93% 0, 100% 100%, 0% 100%);background:var(--blue);color:var(--bg-color);padding:30px 30px 15px;font-size:42px;font-family:var(--font-header);text-transform:uppercase;display:inline-block;transition:all 0.3s ease 0s;border: none;border-radius:0;}
+.submit-btn:hover{background:var(--red);color:#fff;clip-path:polygon(3% 5%, 100% 15%, 100% 100%, 0% 97%);}
+
+
 
 
 .toTop{position:fixed;right:30px;bottom:56px;z-index:10000;background-color:var(--blue);width:42px;height:42px;font-size:20px;line-height:42px;border:none;color:var(--bg-color);}
