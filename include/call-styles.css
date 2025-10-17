@@ -212,6 +212,13 @@ select:-webkit-autofill:focus {background-color:#0102021A !important;-webkit-box
 .submit-btn:hover{background:var(--red);color:#fff;clip-path:polygon(3% 5%, 100% 15%, 100% 100%, 0% 97%);}
 
 
+.owl-carousel{position:relative;}
+.owl-carousel .owl-nav button.owl-next, .owl-carousel .owl-nav button.owl-prev, .owl-carousel button.owl-dot{position:absolute;top:0;bottom:0;width:33%;opacity:0 !important;}
+.owl-next{right:0;}
+.owl-prev{left:0;}
+
+
+
 
 
 .toTop{position:fixed;right:30px;bottom:56px;z-index:10000;background-color:var(--blue);width:42px;height:42px;font-size:20px;line-height:42px;border:none;color:var(--bg-color);}
