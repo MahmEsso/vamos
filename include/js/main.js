@@ -39,7 +39,7 @@ function FixMegaNavbar(navHeight) {
  */
 $(document).ready(function(){
 	$(".team-carousel").owlCarousel({
-		margin:0,
+		margin:30,
 		loop:true,
 		dots:false,
 		center:true,
