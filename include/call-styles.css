@@ -167,7 +167,7 @@ a:hover, a:active, a:focus{text-decoration:none;color:var(--sc);}
 .flavours-container{display:flex;justify-content: space-between;gap:10px;font-family:var(--font-header);line-height:1;font-size:36px;text-transform:uppercase;flex-direction: column;align-items: center;}
 .flavours-container .flovour-box{text-align:center;}
 
-.laliga-section{padding:240px 0 300px;}
+.laliga-section{padding:60px 0 90px;}
 
 .about-hero-caon-con{display:flex;justify-content:center;margin-bottom:-50%;}
 .about-hero-can-box.pinapple{transform:rotate(-15deg);margin-right:-15%;}
@@ -294,6 +294,7 @@ select:-webkit-autofill:focus {background-color:#0102021A !important;-webkit-box
 .contact-label,.form-control{font-size:36px;}
 .contact-form-section .hero-title.small-title{font-size:28px;}
 
+.laliga-section{padding:240px 0 300px;}
 
 }
 
