@@ -63,8 +63,8 @@
                 <div class="product-img animated-products animated-products-left">
                   <img src="images/can-mask.png" class="mw-100" alt="">
                   <div class="product-labels">
-                    <img src="images/peach-label-hero.jpg" alt="">
-                    <img src="images/peach-label-hero.jpg" alt="">
+                    <img src="images/peach-label.jpg" alt="">
+                    <img src="images/peach-label.jpg" alt="">
                   </div>
                 </div>
               </div>
@@ -72,8 +72,8 @@
                 <div class="product-img animated-products animated-products-left">
                   <img src="images/can-mask.png" class="mw-100" alt="">
                   <div class="product-labels">
-                    <img src="images/malt-label-hero.jpg" alt="">
-                    <img src="images/malt-label-hero.jpg" alt="">
+                    <img src="images/malt-label.jpg" alt="">
+                    <img src="images/malt-label.jpg" alt="">
                   </div>
                 </div>
               </div>
@@ -268,11 +268,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
     scrollTrigger: {
       trigger: hero,
       start: "top top",
-      end:  () => window.innerHeight * 3 + " top",
+      end:  () => window.innerHeight * .8 + " 20%",
       scrub: true,
       pin: true,
       toggleActions: "play none none none",
-      // markers: true
+      markers: true
     }
     /* scrollTrigger: {
       trigger: ".animated-products",
@@ -285,22 +285,25 @@ document.addEventListener("DOMContentLoaded", (event) => {
     } */
   });
 
-  tl.from(".animated-products-left, .animated-products-right", {
+  tl.to(".animated-products-left, .animated-products-right", {
+    //delay: window.innerWidth > 992 ? 300 : 0,
     duration:300,
     // x:-viewportWidth,
-    x: (i, el) => el.classList.contains("animated-products-left") ? -window.innerWidth : window.innerWidth,
+    x: (i, el) => el.classList.contains("animated-products-left") ? -window.innerWidth * .5 : window.innerWidth * .5,
     stagger:0.2,
     // scale: 0,
     ease:"power4.out",
   });
   tl.to(".animated-products-left .product-labels",{
+    /* delay:300, */
+    // delay: window.innerWidth > 992 ? 300 : 0,
     duration:300,
-    //x:viewportWidth*.42,
-    x: window.innerWidth > 990
-    ? viewportWidth*.37
+    x: -viewportWidth*.42,
+    /* x: window.innerWidth > 990
+    ? -viewportWidth*.37
     : window.innerWidth > 768
-      ? viewportWidth*.65
-      : viewportWidth*.42,
+      ? -viewportWidth*.65
+      : -viewportWidth*.42, */
     stagger:0.2,
     ease:"power4.out",
   },0);
@@ -310,15 +313,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
     stagger:0.2,
     ease:"power4.out",
   }); */
-  tl.to(".animated-products-right .product-labels",{
+  tl.from(".animated-products-right .product-labels",{
+    //delay: window.innerWidth > 992 ? 300 : 0,
     duration:300,
     x:-viewportWidth*.37,
     stagger:0.2,
     ease:"power4.out",
   },0);
-  tl.from(".div1, .div2",{
-    delay:300,
-    duration:300,
+  tl.to(".div1, .div2",{
+    duration:50,
     opacity:0,
     y:-30,// > 768 ? -400 : 0
     stagger:0.2,

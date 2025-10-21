@@ -51,10 +51,11 @@ a:hover, a:active, a:focus{text-decoration:none;color:var(--sc);}
 
 }
 
+.section{overflow-x:hidden;}
 .hero{position:relative;overflow:hidden;}
 /* .hero::before{content:url(../images/pinapple.png);position:absolute;top:60px;left:-60px;animation:float-bob-x 3s linear infinite;}
 .hero::after{content:url(../images/peach.png);position:absolute;bottom:120px;right:0px;animation:rotating 3s linear infinite;} */
-.pinapple-hero{position:absolute;top: 300px;left:-60px;animation:float-bob-x 3s linear infinite;display:none;}
+.pinapple-hero{position:absolute;top:120px;left:-60px;animation:float-bob-x 3s linear infinite;display:none;}
 .peach-hero{position:absolute;bottom:120px;right:0px;animation:rotating 3s linear infinite;display:none;}
 .pinapple-hero img,.peach-hero img{height:180px;}
 
@@ -136,7 +137,7 @@ a:hover, a:active, a:focus{text-decoration:none;color:var(--sc);}
 .animated-products{overflow:hidden;position: relative;margin: 0 15%;}
 .animated-products>img{z-index:9;position: relative;width: 100%;}
 .product-labels{position:absolute;bottom:0;top:0;left: 0;/* transform:translateX(-50%); */display:flex;gap:0;z-index:1;}
-.animated-products-left .product-labels{left:auto;right: 0;}
+/* .animated-products-left .product-labels{left:auto;right: 0;} */
 .center .animated-products .product-labels{animation:slide-left 40s linear infinite;}
 /* .product-box::after{content:attr(data-bg);position:absolute;inset:0;transform:scaleX(.1);transition-duration:.5s;transition-delay:.3s;z-index:-1;transform-origin:center;}
 .center .product-box::after{transform:scaleX(1);}
