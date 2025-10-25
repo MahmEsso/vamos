@@ -52,7 +52,7 @@
           <div class="div1 valign-middle wow fadeInRight">
             <div class="backed-by d-block">Backed by 130+ years of malt expertise from Mahou,</div>
           </div>
-          <div class="div2 valign-middle text-end wow fadeInLeft"><img src="images/laliga.png" class="w-100" alt=""></div>
+          <div class="div2 valign-middle text-end wow fadeInLeft"><img src="images/laliga.png" class="mw-100" alt=""></div>
           <!-- <div class="div3"><img src="images/about-hero-cans.png" class="w-100" alt=""></div> -->
           <div class="div3">
             <div class="about-hero-caon-con">
@@ -115,7 +115,7 @@
     </div>
   </div>
 </div>
-<div class="section laliga-section">
+<!-- <div class="section laliga-section">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
@@ -123,9 +123,9 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
-<div class="section p-0 mb-5">
+<div class="section p-0 mb-5 mt-5">
   <div class="container">
     <div class="row">
       <div class="col-12 text-center"><img src="images/about-banner3.jpg" class="w-100 wow fadeInLeft" alt=""></div>
@@ -195,6 +195,25 @@
         ease:"back.out(1.7)",
         /* delay:0.5 */
       });
+      gsap.from(".about-hero-can-box:first-child", {
+        duration:1,
+        opacity:0,
+        y:10000,
+        x:3000,
+        stagger:0.05,
+        ease:"back.out(.5)",
+        /* delay:0.5 */
+      });
+      gsap.from(".about-hero-can-box:last-child", {
+        duration:1,
+        opacity:0,
+        y:10000,
+        x:-3000,
+        stagger:0.05,
+        ease:"back.out(.5)",
+        /* delay:0.5 */
+      });
+
     });
     // use a script tag or an external JS file
     document.addEventListener("DOMContentLoaded", (event) => {

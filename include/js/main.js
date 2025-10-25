@@ -45,7 +45,8 @@ $(document).ready(function(){
 		center:true,
 		autoplayHoverPause:true,
 		autoplay:true,
-		responsive:{0:{items:2,},600:{ items:2,nav:true,},1000:{items:3,nav:true,},1300:{items:3,nav:true,}}
+		nav:true,
+		responsive:{0:{items:2},600:{ items:2},1000:{items:3},1300:{items:3}}
 	});
 });
 
@@ -171,3 +172,8 @@ document.addEventListener('click', (e)=>{
 		bigLabel.style.display = 'none';
 	}
 }, {capture:true});
+
+
+
+
+

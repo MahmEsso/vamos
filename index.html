@@ -123,9 +123,9 @@
   </div>
 </div>
 <div class="section products-carousel-section">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
+  <div class="container g-0">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
         <div class="team-carousel owl-carousel owl-theme wow fadeInRight">
           <div class="product-box" style="background-image:url(images/peach-bg.png);">
             <div class="product-name">Peach <span>with Vanilla</span></div>
@@ -167,18 +167,6 @@
               </div>
             </div>
           </div>
-          <!-- <div class="product-box">
-            <div class="product-name">Toasted <span>Malt</span></div>
-            <div class="product-img" style="background-image:url(images/malt-bg.png);"><img src="images/toasted-malt-can.png" class="w-100" alt=""></div>
-          </div>
-          <div class="product-box">
-            <div class="product-name">Pineapple <span>with caramel</span></div>
-            <div class="product-img" style="background-image:url(images/pinapple-bg.png);"><img src="images/pinapple-can.png" class="w-100" alt=""></div>
-          </div>
-          <div class="product-box">
-            <div class="product-name">Apple <span>with Cinnamon</span></div>
-            <div class="product-img" style="background-image:url(images/apple-bg.png);"><img src="images/apple-can.png" class="w-100" alt=""></div>
-          </div> -->
         </div>
       </div>
     </div>
@@ -200,7 +188,7 @@
     <div class="row">
       <div class="col-12">
         <div class="cta-box wow flipInX">
-          <div class="cta-can d-none d-lg-block wow fadeInLeft"><img src="images/pinapple-with-caramel-cta.png" class="mw-100" alt=""></div>
+          <div class="cta-can wow fadeInLeft"><img src="images/pinapple-with-caramel-cta.png" class="mw-100" alt=""></div>
           <div class="cta-txt wow fadeInRight">
             <div class="cta-logo"><img src="images/logo.png" alt=""></div>
             <div class="cta-title">Live Bold?<br>Love The Vibe?</div>
@@ -231,103 +219,71 @@
 
 <button class="toTop" style="display:block;"><i class="fa-solid fa-arrow-up"></i></button>
 
-  <script src="include/js/jquery-3.6.0.min.js"></script>
-  <script src="include/js/bootstrap.bundle.min.js"></script>
-  <script src="include/js/owl.carousel.js"></script>
+<script src="include/js/jquery-3.6.0.min.js"></script>
+<script src="include/js/bootstrap.bundle.min.js"></script>
+<script src="include/js/owl.carousel.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
-  <script>
-  // use a script tag or an external JS file
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script>
   document.addEventListener("DOMContentLoaded", (event) => {
     gsap.registerPlugin(SplitText)
-    // gsap code here!
     let split = SplitText.create(".hero-title", {
       type:"words"
     });
     gsap.from(split.words, {
-      /* duration:.5, */
       opacity:0,
       y:20,
       stagger:0.05,
       ease:"back.out(1.7)",
-      /* delay:0.5 */
     });
   });
-  </script>
+</script>
 <script>
- // use a script tag or an external JS file
-document.addEventListener("DOMContentLoaded", (event) => {
-  gsap.registerPlugin(ScrollTrigger)
-  // gsap code here!
-  let hero = document.querySelector(".hero");
-  let viewportWidth = window.innerWidth;
+  document.addEventListener("DOMContentLoaded", (event) => {
+    gsap.registerPlugin(ScrollTrigger)
+    let hero = document.querySelector(".hero");
+    let viewportWidth = window.innerWidth;
 
-  let tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: hero,
-      start: "top top",
-      end:  () => window.innerHeight * .8 + " 20%",
-      scrub: true,
-      pin: true,
-      toggleActions: "play none none none",
-      // markers: true
-    }
-    /* scrollTrigger: {
-      trigger: ".animated-products",
-      start: "bottom bottom",
-      end: "bottom top",
-      scrub: true,
-      pin: hero,
-      toggleActions: "play none none none",
-      markers: true
-    } */
-  });
+    let tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: hero,
+        start: "top top",
+        end:  () => window.innerHeight * .8 + " 20%",
+        scrub: true,
+        pin: true,
+        toggleActions: "play none none none",
+        // markers: true
+      }
+    });
 
-  tl.to(".animated-products-left, .animated-products-right", {
-    //delay: window.innerWidth > 992 ? 300 : 0,
-    duration:300,
-    // x:-viewportWidth,
-    x: (i, el) => el.classList.contains("animated-products-left") ? -window.innerWidth * .5 : window.innerWidth * .5,
-    stagger:0.2,
-    // scale: 0,
-    ease:"power4.out",
+    tl.to(".animated-products-left, .animated-products-right", {
+      duration:300,
+      x: (i, el) => el.classList.contains("animated-products-left") ? -window.innerWidth * .5 : window.innerWidth * .5,
+      stagger:0.2,
+      ease:"power4.out",
+    });
+    tl.to(".animated-products-left .product-labels",{
+      duration:300,
+      x: -viewportWidth*.42,
+      stagger:0.2,
+      ease:"power4.out",
+    },0);
+    tl.to(".animated-products-right .product-labels",{
+      duration:300,
+      x: viewportWidth*.37,
+      stagger:0.2,
+      ease:"power4.out",
+    },0);
+    tl.to(".div1, .div2",{
+      duration:50,
+      opacity:0,
+      y:-30,// > 768 ? -400 : 0
+      stagger:0.2,
+      ease:"power4.out",
+    },0);
   });
-  tl.to(".animated-products-left .product-labels",{
-    /* delay:300, */
-    // delay: window.innerWidth > 992 ? 300 : 0,
-    duration:300,
-    x: -viewportWidth*.42,
-    /* x: window.innerWidth > 990
-    ? -viewportWidth*.37
-    : window.innerWidth > 768
-      ? -viewportWidth*.65
-      : -viewportWidth*.42, */
-    stagger:0.2,
-    ease:"power4.out",
-  },0);
-  /* tl.from(".animated-products-right", {
-    duration:300,
-    x:viewportWidth,
-    stagger:0.2,
-    ease:"power4.out",
-  }); */
-  tl.from(".animated-products-right .product-labels",{
-    //delay: window.innerWidth > 992 ? 300 : 0,
-    duration:300,
-    x:-viewportWidth*.37,
-    stagger:0.2,
-    ease:"power4.out",
-  },0);
-  tl.to(".div1, .div2",{
-    duration:50,
-    opacity:0,
-    y:-30,// > 768 ? -400 : 0
-    stagger:0.2,
-    ease:"power4.out",
-  },0);
-});
 
 </script>
 
