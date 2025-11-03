@@ -99,30 +99,26 @@ a:hover, a:active, a:focus{text-decoration:none;color:var(--sc);}
 .hero-product-box:nth-child(3){left:66%;}
 .hero-product-box:last-child{left:33%;z-index:1;} */
 
-.div3 {
-  position: relative;
-  perspective: 900px; /* to help the 3D feel a bit */
-  margin-top:60px;
-}
+.div3 {position: relative;perspective: 900px; /* to help the 3D feel a bit */padding-top: 60px;overflow: hidden;}
 
 .hero-animation {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  padding-top: 60%;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	padding-top: 60%;
 }
 
 .hero-product-box {
-  position: absolute;
-  width: 40%;
-  top: 0;
-  transform-origin: 50% 100%; /* scale from bottom */
-  will-change: transform;
+	position: absolute;
+	width: 40%;
+	top: 0;
+	transform-origin: 50% 100%; /* scale from bottom */
+	will-change: transform;
 }
-
+/* .hero-product-box[style*="filter: blur(1px)"] .roduct-labels{filter:brightness(.5);} */
 
 .hero-cans-con{display:grid;grid-template-columns:repeat(2, 1fr);grid-template-rows:repeat(2, auto);gap:30px;z-index:9;margin-top:30px;}
 .div1{grid-area:2 / 1 / 3 / 2;margin-bottom:20px;}
