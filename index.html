@@ -48,16 +48,15 @@
       </div>
       <div class="row justify-content-center">
         <div class="hero-cans-con">
-          <div class="div1 valign-baseline"><img src="images/laliga.png" class="w-100" alt=""></div>
-          <div class="div2 valign-baseline">
+          <div class="div1 valign-middle"><img src="images/laliga.png" class="w-100" alt=""></div>
+          <div class="div2 valign-middle">
             <div class="non-alcoholic text-end d-block">non-alcoholic<br>malt beverage</div>
-            <!-- <div class="explore-btn"><a href="#"><img src="images/hero-btn.png" class="w-100" alt=""></a></div> -->
             <div class="explore-btn text-end">
               <a href="products.html"><span>Explore</span><img src="images/logo.png" alt=""></a>
             </div>
           </div>
-          <!-- <div class="div3"><img src="images/hero-img.png" class="w-100" alt=""></div> -->
           <div class="div3">
+            <!-- <div class="hero-shape"></div> -->
             <div class="hero-animation">
               <div class="hero-product-box">
                 <div class="product-img animated-products animated-products-left">
@@ -240,7 +239,7 @@
     });
   });
 </script>
-<script>
+<!-- <script>
   document.addEventListener("DOMContentLoaded", (event) => {
     gsap.registerPlugin(ScrollTrigger)
     let hero = document.querySelector(".hero");
@@ -285,7 +284,90 @@
     },0);
   });
 
+</script> -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  gsap.registerPlugin(ScrollTrigger);
+
+  const boxes = gsap.utils.toArray(".hero-product-box");
+
+  // --- Edge-aligned layout for 40% width ---
+  const stateLeft = {
+    left: "0%",        // fully left-aligned
+    scale: 1,
+    zIndex: 1,
+    rotationY: 12,
+    opacity: 1,
+    filter: "blur(1px)",
+  };
+
+  const stateCenter = {
+    left: "30%",       // center (balanced for 40% width)
+    scale: 1.1,
+    zIndex: 50,
+    rotationY: 0,
+    opacity: 1,
+    filter: "blur(0px)",
+  };
+
+  const stateRight = {
+    left: "60%",       // fully right-aligned
+    scale: 1,
+    zIndex: 2,
+    rotationY: -12,
+    opacity: 1,
+    filter: "blur(1px)",
+  };
+
+  const stateBack = {
+    left: "30%",       // behind center
+    scale: 0.7,
+    zIndex: 0,
+    rotationY: 0,
+    opacity: 0.5,
+    filter: "blur(2px)",
+  };
+
+  // Initial order
+  gsap.set(boxes[0], stateLeft);
+  gsap.set(boxes[1], stateCenter);
+  gsap.set(boxes[2], stateRight);
+  gsap.set(boxes[3], stateBack);
+
+  // Timeline setup
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".hero",
+      start: "top top",
+      end: "+=" + (window.innerHeight * 3),
+      scrub: true,
+      pin: true,
+      // markers: true
+    }
+  });
+
+  // Rotation order: [left, center, right, back]
+  let order = [0, 1, 2, 3];
+
+  // Each can moves through all positions
+  for (let i = 0; i < 3; i++) {
+    tl
+      .to(boxes[order[1]], { ...stateLeft, duration: 1, ease: "none" })
+      .to(boxes[order[2]], { ...stateCenter, duration: 1, ease: "none" }, "<")
+      .to(boxes[order[0]], { ...stateBack, duration: 1, ease: "none" }, "<")
+      .to(boxes[order[3]], { ...stateRight, duration: 1, ease: "none" }, "<");
+
+    // Rotate the roles for next step
+    order = [order[1], order[2], order[3], order[0]];
+  }
+
+  window.addEventListener("resize", () => ScrollTrigger.refresh());
+});
+
+
+
 </script>
+
 
   <!-- Smooth Scrolling -->
   <script src="https://unpkg.com/lenis@1.3.11/dist/lenis.min.js"></script> 
