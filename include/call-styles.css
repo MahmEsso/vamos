@@ -144,9 +144,9 @@ body:not(.inner-body) .div3{overflow: hidden;padding-top:60px;}
 .product-name{font-size:42px;font-family:var(--font-header);text-transform:uppercase;color:var(--bg-color);margin-top:30px;margin-bottom:10px;text-align:center;opacity:0;line-height:.8;/* margin-bottom: -8px; */transition:.3s;}
 .product-name span{display:block;font-size:28px;}
 .center .product-box .product-name{opacity:1;}
-.products-carousel-section .products-section-btn a{background:var(--bg-color);color:var(--blue);opacity:0;transition:.5s;transition-delay:.3s;}
+.products-carousel-section .products-section-btn a{background:var(--bg-color);color:var(--blue);opacity:0;transition:0s;transition-delay:0s;}
 .products-carousel-section .products-section-btn a:hover{background:var(--red);color:var(--bg-color);}
-.center .products-section-btn a{opacity:1;transition:0s;transition-delay:0s;}
+.center .products-section-btn a{opacity:1;transition:.5s;transition-delay:.3s;}
 
 .animated-products{overflow:hidden;position: relative;margin: 0 15%;-webkit-mask-image: url(../images/can-mask-mask.png);mask-image: url(../images/can-mask-mask.png);-webkit-mask-size: contain;mask-size: contain;-webkit-mask-position: center;mask-position: center;-webkit-mask-repeat: no-repeat;mask-repeat: no-repeat;}
 .animated-products>img{z-index:9;position: relative;width: 100%;}
