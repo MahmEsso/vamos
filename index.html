@@ -44,7 +44,7 @@
   <div class="hero-content">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-lg-12"><div class="hero-title">You know the moment when the good gets better?</div></div>
+        <div class="col-lg-10"><div class="hero-title">You know the moment when the good gets better?</div></div>
       </div>
       <div class="row justify-content-center">
         <div class="hero-cans-con">
@@ -126,52 +126,64 @@
     <div class="row justify-content-center">
       <div class="col-lg-10">
         <div class="team-carousel owl-carousel owl-theme wow fadeInRight">
-          <div class="product-box" style="background-image:url(images/peach-bg.png);">
-            <div class="product-name">Peach <span>with Vanilla</span></div>
-            <div class="product-img animated-products">
-              <img src="images/can-mask-pc.png" class="mw-100" alt="">
-              <div class="product-labels">
-                <img src="images/peach-label.jpg" alt="">
-                <img src="images/peach-label.jpg" alt="">
+          <div class="product-cont">
+            <div class="product-box" style="background-image:url(images/peach-bg.png);">
+              <div class="product-name">Peach <span>with Vanilla</span></div>
+              <div class="product-img animated-products">
+                <img src="images/can-mask-pc.png" class="mw-100" alt="">
+                <div class="product-labels">
+                  <img src="images/peach-label.jpg" alt="">
+                  <img src="images/peach-label.jpg" alt="">
+                </div>
               </div>
             </div>
+            <div class="products-section-btn text-center"><a href="products.html#peach">Know More</a></div>
           </div>
-          <div class="product-box" style="background-image:url(images/malt-bg.png);">
-            <div class="product-name">Toasted <span>Malt</span></div>
-            <div class="product-img animated-products">
-              <img src="images/can-mask-pc.png" class="mw-100" alt="">
-              <div class="product-labels">
-                <img src="images/malt-label.jpg" alt="">
-                <img src="images/malt-label.jpg" alt="">
+          <div class="product-cont">
+            <div class="product-box" style="background-image:url(images/malt-bg.png);">
+              <div class="product-name">Toasted <span>Malt</span></div>
+              <div class="product-img animated-products">
+                <img src="images/can-mask-pc.png" class="mw-100" alt="">
+                <div class="product-labels">
+                  <img src="images/malt-label.jpg" alt="">
+                  <img src="images/malt-label.jpg" alt="">
+                </div>
               </div>
             </div>
+            <div class="products-section-btn text-center"><a href="products.html#malt">Know More</a></div>
           </div>
-          <div class="product-box" style="background-image:url(images/pinapple-bg.png);">
-            <div class="product-name">Pineapple <span>with caramel</span></div>
-            <div class="product-img animated-products">
-              <img src="images/can-mask-pc.png" class="mw-100" alt="">
-              <div class="product-labels">
-                <img src="images/pinapple-label.jpg" alt="">
-                <img src="images/pinapple-label.jpg" alt="">
+          <div class="product-cont">
+            <div class="product-box" style="background-image:url(images/pinapple-bg.png);">
+              <div class="product-name">Pineapple <span>with caramel</span></div>
+              <div class="product-img animated-products">
+                <img src="images/can-mask-pc.png" class="mw-100" alt="">
+                <div class="product-labels">
+                  <img src="images/pinapple-label.jpg" alt="">
+                  <img src="images/pinapple-label.jpg" alt="">
+                </div>
               </div>
             </div>
+            <div class="products-section-btn text-center"><a href="products.html#pinapple">Know More</a></div>
           </div>
-          <div class="product-box" style="background-image:url(images/apple-bg.png);">
-            <div class="product-name">Apple <span>with Cinnamon</span></div>
-            <div class="product-img animated-products">
-              <img src="images/can-mask-pc.png" class="mw-100" alt="">
-              <div class="product-labels">
-                <img src="images/apple-label.jpg" alt="">
-                <img src="images/apple-label.jpg" alt="">
+          <div class="product-cont">
+            <div class="product-box" style="background-image:url(images/apple-bg.png);">
+              <div class="product-name">Apple <span>with Cinnamon</span></div>
+              <div class="product-img animated-products">
+                <img src="images/can-mask-pc.png" class="mw-100" alt="">
+                <div class="product-labels">
+                  <img src="images/apple-label.jpg" alt="">
+                  <img src="images/apple-label.jpg" alt="">
+                </div>
               </div>
             </div>
+            <div class="products-section-btn text-center"><a href="products.html#apple">Know More</a></div>
           </div>
         </div>
       </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-12"><div class="products-section-btn text-center"><a href="products.html">Know More</a></div></div>
-    </div>
+    </div> -->
   </div>
 </div>
 
@@ -298,7 +310,7 @@ document.addEventListener("DOMContentLoaded", () => {
     zIndex: 1,
     rotationY: 12,
     opacity: 1,
-    // filter: "blur(1px)",
+    filter: "brightness(.9)",
   };
 
   const stateCenter = {
@@ -307,7 +319,7 @@ document.addEventListener("DOMContentLoaded", () => {
     zIndex: 50,
     rotationY: 0,
     opacity: 1,
-    // filter: "blur(0px)",
+    filter: "brightness(1.1)",
   };
 
   const stateRight = {
@@ -316,7 +328,7 @@ document.addEventListener("DOMContentLoaded", () => {
     zIndex: 2,
     rotationY: -12,
     opacity: 1,
-    // filter: "blur(1px)",
+    filter: "brightness(.9)",
   };
 
   const stateBack = {
@@ -324,8 +336,8 @@ document.addEventListener("DOMContentLoaded", () => {
     scale: 0.7,
     zIndex: 0,
     rotationY: 0,
-    opacity: 0.5,
-    // filter: "blur(2px)",
+    opacity: 1,
+    filter: "brightness(.6)",
   };
 
   // Initial order
