@@ -59,7 +59,7 @@
             <div class="hero-shape"></div>
             <div class="hero-animation">
               <div class="hero-product-box">
-                <div class="product-img animated-products animated-products-left">
+                <div class="product-img animated-products">
                   <img src="images/can-mask.png" class="mw-100" alt="">
                   <div class="product-labels">
                     <img src="images/peach-label.jpg" alt="">
@@ -68,7 +68,7 @@
                 </div>
               </div>
               <div class="hero-product-box">
-                <div class="product-img animated-products animated-products-left">
+                <div class="product-img animated-products">
                   <img src="images/can-mask.png" class="mw-100" alt="">
                   <div class="product-labels">
                     <img src="images/malt-label.jpg" alt="">
@@ -77,7 +77,7 @@
                 </div>
               </div>
               <div class="hero-product-box">
-                <div class="product-img animated-products animated-products-right">
+                <div class="product-img animated-products">
                   <img src="images/can-mask.png" class="mw-100" alt="">
                   <div class="product-labels">
                     <img src="images/pinapple-label.jpg" alt="">
@@ -86,7 +86,7 @@
                 </div>
               </div>
               <div class="hero-product-box">
-                <div class="product-img animated-products animated-products-right">
+                <div class="product-img animated-products">
                   <img src="images/can-mask.png" class="mw-100" alt="">
                   <div class="product-labels">
                     <img src="images/apple-label.jpg" alt="">
@@ -130,7 +130,7 @@
             <div class="product-box" style="background-image:url(images/peach-bg.png);">
               <div class="product-name">Peach <span>with Vanilla</span></div>
               <div class="product-img animated-products">
-                <img src="images/can-mask-pc.png" class="mw-100" alt="">
+                <img src="images/can-mask.png" class="mw-100" alt="">
                 <div class="product-labels">
                   <img src="images/peach-label.jpg" alt="">
                   <img src="images/peach-label.jpg" alt="">
@@ -143,7 +143,7 @@
             <div class="product-box" style="background-image:url(images/malt-bg.png);">
               <div class="product-name">Toasted <span>Malt</span></div>
               <div class="product-img animated-products">
-                <img src="images/can-mask-pc.png" class="mw-100" alt="">
+                <img src="images/can-mask.png" class="mw-100" alt="">
                 <div class="product-labels">
                   <img src="images/malt-label.jpg" alt="">
                   <img src="images/malt-label.jpg" alt="">
@@ -156,7 +156,7 @@
             <div class="product-box" style="background-image:url(images/pinapple-bg.png);">
               <div class="product-name">Pineapple <span>with caramel</span></div>
               <div class="product-img animated-products">
-                <img src="images/can-mask-pc.png" class="mw-100" alt="">
+                <img src="images/can-mask.png" class="mw-100" alt="">
                 <div class="product-labels">
                   <img src="images/pinapple-label.jpg" alt="">
                   <img src="images/pinapple-label.jpg" alt="">
@@ -169,7 +169,7 @@
             <div class="product-box" style="background-image:url(images/apple-bg.png);">
               <div class="product-name">Apple <span>with Cinnamon</span></div>
               <div class="product-img animated-products">
-                <img src="images/can-mask-pc.png" class="mw-100" alt="">
+                <img src="images/can-mask.png" class="mw-100" alt="">
                 <div class="product-labels">
                   <img src="images/apple-label.jpg" alt="">
                   <img src="images/apple-label.jpg" alt="">
@@ -237,165 +237,137 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+
 <script>
-  document.addEventListener("DOMContentLoaded", (event) => {
-    gsap.registerPlugin(SplitText)
-    let split = SplitText.create(".hero-title", {
-      type:"words"
+  // 🔹 Stop the browser from restoring scroll position after refresh
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+    // If you want to FORCE always starting at the top after full reload,
+    // uncomment the next line:
+    // window.scrollTo(0, 0);
+  }
+
+  // 🔹 SplitText hero title animation
+  document.addEventListener("DOMContentLoaded", () => {
+    gsap.registerPlugin(SplitText);
+
+    const split = SplitText.create(".hero-title", {
+      type: "words"
     });
+
     gsap.from(split.words, {
-      opacity:0,
-      y:20,
-      stagger:0.05,
-      ease:"back.out(1.7)",
+      opacity: 0,
+      y: 20,
+      stagger: 0.05,
+      ease: "back.out(1.7)"
     });
   });
-</script>
-<!-- <script>
-  document.addEventListener("DOMContentLoaded", (event) => {
-    gsap.registerPlugin(ScrollTrigger)
-    let hero = document.querySelector(".hero");
-    let viewportWidth = window.innerWidth;
 
-    let tl = gsap.timeline({
+  // 🔹 Hero product boxes ScrollTrigger animation
+  document.addEventListener("DOMContentLoaded", () => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const boxes = gsap.utils.toArray(".hero-product-box");
+    if (!boxes.length) return;
+
+    // --- Edge-aligned layout for 40% width ---
+    const stateLeft = {
+      left: "0%",
+      scale: 1,
+      zIndex: 1,
+      rotationY: 12,
+      opacity: 1,
+      filter: "brightness(.9)"
+    };
+
+    const stateCenter = {
+      left: "30%",
+      scale: 1.1,
+      zIndex: 50,
+      rotationY: 0,
+      opacity: 1,
+      filter: "brightness(1.1)"
+    };
+
+    const stateRight = {
+      left: "60%",
+      scale: 1,
+      zIndex: 2,
+      rotationY: -12,
+      opacity: 1,
+      filter: "brightness(.9)"
+    };
+
+    const stateBack = {
+      left: "30%",
+      scale: 0.7,
+      zIndex: 0,
+      rotationY: 0,
+      opacity: 1,
+      filter: "brightness(.6)"
+    };
+
+    // Initial order
+    gsap.set(boxes[0], stateLeft);
+    gsap.set(boxes[1], stateCenter);
+    gsap.set(boxes[2], stateRight);
+    gsap.set(boxes[3], stateBack);
+
+    // Timeline setup
+    const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: hero,
+        trigger: ".hero",
         start: "top top",
-        end:  () => window.innerHeight * .8 + " 20%",
+        // Use a function so this recomputes on refresh/resize
+        end: () => "+=" + (window.innerHeight * 3),
         scrub: true,
         pin: true,
-        toggleActions: "play none none none",
+        invalidateOnRefresh: true,
         // markers: true
       }
     });
 
-    tl.to(".animated-products-left, .animated-products-right", {
-      duration:300,
-      x: (i, el) => el.classList.contains("animated-products-left") ? -window.innerWidth * .5 : window.innerWidth * .5,
-      stagger:0.2,
-      ease:"power4.out",
-    });
-    tl.to(".animated-products-left .product-labels",{
-      duration:300,
-      x: -viewportWidth*.42,
-      stagger:0.2,
-      ease:"power4.out",
-    },0);
-    tl.to(".animated-products-right .product-labels",{
-      duration:300,
-      x: viewportWidth*.37,
-      stagger:0.2,
-      ease:"power4.out",
-    },0);
-    tl.to(".div1, .div2",{
-      duration:50,
-      opacity:0,
-      y:-30,// > 768 ? -400 : 0
-      stagger:0.2,
-      ease:"power4.out",
-    },0);
-  });
+    // Rotation order: [left, center, right, back]
+    let order = [0, 1, 2, 3];
 
-</script> -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  gsap.registerPlugin(ScrollTrigger);
+    // Each can moves through all positions
+    for (let i = 0; i < 3; i++) {
+      tl
+        .to(boxes[order[1]], { ...stateLeft, duration: 1, ease: "none" })
+        .to(boxes[order[2]], { ...stateCenter, duration: 1, ease: "none" }, "<")
+        .to(boxes[order[0]], { ...stateBack, duration: 1, ease: "none" }, "<")
+        .to(boxes[order[3]], { ...stateRight, duration: 1, ease: "none" }, "<");
 
-  const boxes = gsap.utils.toArray(".hero-product-box");
-
-  // --- Edge-aligned layout for 40% width ---
-  const stateLeft = {
-    left: "0%",        // fully left-aligned
-    scale: 1,
-    zIndex: 1,
-    rotationY: 12,
-    opacity: 1,
-    filter: "brightness(.9)",
-  };
-
-  const stateCenter = {
-    left: "30%",       // center (balanced for 40% width)
-    scale: 1.1,
-    zIndex: 50,
-    rotationY: 0,
-    opacity: 1,
-    filter: "brightness(1.1)",
-  };
-
-  const stateRight = {
-    left: "60%",       // fully right-aligned
-    scale: 1,
-    zIndex: 2,
-    rotationY: -12,
-    opacity: 1,
-    filter: "brightness(.9)",
-  };
-
-  const stateBack = {
-    left: "30%",       // behind center
-    scale: 0.7,
-    zIndex: 0,
-    rotationY: 0,
-    opacity: 1,
-    filter: "brightness(.6)",
-  };
-
-  // Initial order
-  gsap.set(boxes[0], stateLeft);
-  gsap.set(boxes[1], stateCenter);
-  gsap.set(boxes[2], stateRight);
-  gsap.set(boxes[3], stateBack);
-
-  // Timeline setup
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".hero",
-      start: "top top",
-      end: "+=" + (window.innerHeight * 3),
-      scrub: true,
-      pin: true,
-      // markers: true
+      // Rotate the roles for next step
+      order = [order[1], order[2], order[3], order[0]];
     }
+
+    // Refresh on resize so layout + ScrollTrigger stay in sync
+    window.addEventListener("resize", () => ScrollTrigger.refresh());
+
+    // Ensure everything is correct once images/fonts are fully loaded
+    window.addEventListener("load", () => {
+      ScrollTrigger.refresh();
+    });
   });
-
-  // Rotation order: [left, center, right, back]
-  let order = [0, 1, 2, 3];
-
-  // Each can moves through all positions
-  for (let i = 0; i < 3; i++) {
-    tl
-      .to(boxes[order[1]], { ...stateLeft, duration: 1, ease: "none" })
-      .to(boxes[order[2]], { ...stateCenter, duration: 1, ease: "none" }, "<")
-      .to(boxes[order[0]], { ...stateBack, duration: 1, ease: "none" }, "<")
-      .to(boxes[order[3]], { ...stateRight, duration: 1, ease: "none" }, "<");
-
-    // Rotate the roles for next step
-    order = [order[1], order[2], order[3], order[0]];
-  }
-
-  window.addEventListener("resize", () => ScrollTrigger.refresh());
-});
-
-
-
 </script>
 
 
   <!-- Smooth Scrolling -->
-  <script src="https://unpkg.com/lenis@1.3.11/dist/lenis.min.js"></script> 
-  <script>
-    // Initialize Lenis
-    const lenis = new Lenis();
-    // Use requestAnimationFrame to continuously update the scroll
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+<script src="https://unpkg.com/lenis@1.3.11/dist/lenis.min.js"></script> 
+<script>
+  // Initialize Lenis
+  const lenis = new Lenis();
+  // Use requestAnimationFrame to continuously update the scroll
+  function raf(time) {
+    lenis.raf(time);
     requestAnimationFrame(raf);
-  </script>
+  }
+  requestAnimationFrame(raf);
+</script>
 
 
-  <script src="include/js/main.js"></script>
+<script src="include/js/main.js"></script>
 
 
 </body>
