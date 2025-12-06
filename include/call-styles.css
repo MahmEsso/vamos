@@ -266,7 +266,7 @@ select:-webkit-autofill:focus {background-color:#0102021A !important;-webkit-box
 .owl-next{right:0;}
 .owl-prev{left:0;}
 
-
+*:lang(ar){font-family: 'Cairo', sans-serif !important;}
 /* الخطوط الإنجليزية فقط */
 /* :where(*):not(script):not(style):lang(en) {
     font-family: "Roboto", sans-serif !important;
@@ -274,6 +274,21 @@ select:-webkit-autofill:focus {background-color:#0102021A !important;-webkit-box
 /* أي كلمة تحتوي حروف إنجليزية */
 /* :where(*):not(script):not(style):not(:lang(ar)) {
     font-family: "Roboto", sans-serif !important;
+} */
+
+/* .hero-animation {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  transform-style: preserve-3d;
+}
+
+.hero-product-box {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  will-change: transform;
 } */
 
 

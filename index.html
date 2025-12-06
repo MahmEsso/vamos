@@ -60,38 +60,22 @@
             <div class="hero-animation">
               <div class="hero-product-box">
                 <div class="product-img animated-products">
-                  <img src="images/can-mask.png" class="mw-100" alt="">
-                  <div class="product-labels">
-                    <img src="images/pinapple-label.jpg" alt="">
-                    <img src="images/pinapple-label.jpg" alt="">
-                  </div>
+                  <img src="images/apple-can-3d.png" class="mw-100" alt="">
                 </div>
               </div>
               <div class="hero-product-box">
                 <div class="product-img animated-products">
-                  <img src="images/can-mask.png" class="mw-100" alt="">
-                  <div class="product-labels">
-                    <img src="images/malt-label.jpg" alt="">
-                    <img src="images/malt-label.jpg" alt="">
-                  </div>
+                  <img src="images/apple-can-3d.png" class="mw-100" alt="">
                 </div>
               </div>
               <div class="hero-product-box">
                 <div class="product-img animated-products">
-                  <img src="images/can-mask.png" class="mw-100" alt="">
-                  <div class="product-labels">
-                    <img src="images/apple-label.jpg" alt="">
-                    <img src="images/apple-label.jpg" alt="">
-                  </div>
+                  <img src="images/apple-can-3d.png" class="mw-100" alt="">
                 </div>
               </div>
               <div class="hero-product-box">
                 <div class="product-img animated-products">
-                  <img src="images/can-mask.png" class="mw-100" alt="">
-                  <div class="product-labels">
-                    <img src="images/peach-label.jpg" alt="">
-                    <img src="images/peach-label.jpg" alt="">
-                  </div>
+                  <img src="images/apple-can-3d.png" class="mw-100" alt="">
                 </div>
               </div>
 
@@ -195,7 +179,7 @@
 <section class="Second">
   <h1 class="big-title">when the good gets better shout vamos. when the good gets better shout vamos.</h1>
 </section>
-
+<span style="font-family:'Acumin Pro Regular', sans-serif;"></span>
 <div class="cta-section">
   <div class="container">
     <div class="row">
@@ -240,7 +224,7 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
 
-<script>
+<!-- <script>
   // Stop the browser from restoring scroll position after refresh
   if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
@@ -348,7 +332,179 @@
       ScrollTrigger.refresh();
     });
   });
+</script> -->
+
+<script>
+  // Stop the browser from restoring scroll position after refresh
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+
+  // SplitText hero title animation
+  document.addEventListener("DOMContentLoaded", () => {
+    gsap.registerPlugin(SplitText);
+
+    const split = SplitText.create(".hero-title", {
+      type: "words"
+    });
+
+    gsap.from(split.words, {
+      opacity: 0,
+      y: 20,
+      stagger: 0.05,
+      ease: "back.out(1.7)"
+    });
+  });
+
+  // Hero product boxes auto-rotating animation
+  document.addEventListener("DOMContentLoaded", () => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const boxes = gsap.utils.toArray(".hero-product-box");
+    if (!boxes.length) return;
+
+    // --- Edge-aligned layout for 40% width ---
+    const stateLeft = {
+      left: "0%",
+      scale: 1,
+      zIndex: 1,
+      rotationY: 12,
+      opacity: 1,
+    };
+
+    const stateCenter = {
+      left: "30%",
+      scale: 1.1,
+      zIndex: 50,
+      rotationY: 0,
+      opacity: 1,
+    };
+
+    const stateRight = {
+      left: "60%",
+      scale: 1,
+      zIndex: 2,
+      rotationY: -12,
+      opacity: 1,
+    };
+
+    const stateBack = {
+      left: "30%",
+      scale: 0.7,
+      zIndex: 0,
+      rotationY: 0,
+      opacity: 1,
+    };
+
+    // Initial order
+    gsap.set(boxes[0], stateLeft);
+    gsap.set(boxes[1], stateCenter);
+    gsap.set(boxes[2], stateRight);
+    gsap.set(boxes[3], stateBack);
+
+    // Create master timeline for infinite auto-rotation
+    const masterTl = gsap.timeline({ repeat: -1 }); // -1 = infinite repeat
+    
+    // Rotation order: [left, center, right, back]
+    let order = [0, 1, 2, 3];
+
+    // Create smooth transition for each rotation step
+    const createRotationStep = () => {
+      const stepTl = gsap.timeline();
+      
+      stepTl
+        .to(boxes[order[1]], { 
+          ...stateLeft, 
+          duration: 1.5, 
+          ease: "power2.inOut" 
+        })
+        .to(boxes[order[2]], { 
+          ...stateCenter, 
+          duration: 1.5, 
+          ease: "power2.inOut" 
+        }, "<")
+        .to(boxes[order[0]], { 
+          ...stateBack, 
+          duration: 1.5, 
+          ease: "power2.inOut" 
+        }, "<")
+        .to(boxes[order[3]], { 
+          ...stateRight, 
+          duration: 1.5, 
+          ease: "power2.inOut" 
+        }, "<");
+      
+      // Add a slight pause at center position
+      stepTl.to({}, { duration: 0.5 });
+      
+      // Rotate the roles for next step
+      order = [order[1], order[2], order[3], order[0]];
+      
+      return stepTl;
+    };
+
+    // Add 4 rotation steps to complete a full cycle (each can visits each position)
+    for (let i = 0; i < 4; i++) {
+      masterTl.add(createRotationStep());
+    }
+
+    // Optional: Add a floating animation for extra visual interest
+    /* boxes.forEach((box, index) => {
+      gsap.to(box, {
+        y: "-=10",
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        delay: index * 0.3
+      });
+    }); */
+
+    // Optional: Add continuous subtle rotation to labels inside cans
+    /* const labels = document.querySelectorAll(".product-labels img");
+    labels.forEach(label => {
+      gsap.to(label, {
+        rotateY: 360,
+        duration: 20,
+        repeat: -1,
+        ease: "none"
+      });
+    }); */
+
+    // Alternative: Continuous carousel animation (simpler approach)
+    // Uncomment this and comment the masterTl section above if you want a continuous rotation instead of stepped
+    
+    /*
+    const continuousTl = gsap.timeline({ repeat: -1 });
+    
+    // One complete rotation
+    continuousTl
+      .to(boxes[0], { ...stateBack, duration: 1.5, ease: "power2.inOut" })
+      .to(boxes[1], { ...stateLeft, duration: 1.5, ease: "power2.inOut" }, "<")
+      .to(boxes[2], { ...stateCenter, duration: 1.5, ease: "power2.inOut" }, "<")
+      .to(boxes[3], { ...stateRight, duration: 1.5, ease: "power2.inOut" }, "<")
+      .to({}, { duration: 0.5 })
+      .to(boxes[1], { ...stateBack, duration: 1.5, ease: "power2.inOut" })
+      .to(boxes[2], { ...stateLeft, duration: 1.5, ease: "power2.inOut" }, "<")
+      .to(boxes[3], { ...stateCenter, duration: 1.5, ease: "power2.inOut" }, "<")
+      .to(boxes[0], { ...stateRight, duration: 1.5, ease: "power2.inOut" }, "<")
+      .to({}, { duration: 0.5 })
+      .to(boxes[2], { ...stateBack, duration: 1.5, ease: "power2.inOut" })
+      .to(boxes[3], { ...stateLeft, duration: 1.5, ease: "power2.inOut" }, "<")
+      .to(boxes[0], { ...stateCenter, duration: 1.5, ease: "power2.inOut" }, "<")
+      .to(boxes[1], { ...stateRight, duration: 1.5, ease: "power2.inOut" }, "<")
+      .to({}, { duration: 0.5 })
+      .to(boxes[3], { ...stateBack, duration: 1.5, ease: "power2.inOut" })
+      .to(boxes[0], { ...stateLeft, duration: 1.5, ease: "power2.inOut" }, "<")
+      .to(boxes[1], { ...stateCenter, duration: 1.5, ease: "power2.inOut" }, "<")
+      .to(boxes[2], { ...stateRight, duration: 1.5, ease: "power2.inOut" }, "<")
+      .to({}, { duration: 0.5 });
+    */
+  });
 </script>
+
+
+
 
 
   <!-- Smooth Scrolling -->
