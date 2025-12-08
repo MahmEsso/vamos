@@ -39,19 +39,18 @@ function FixMegaNavbar(navHeight) {
  */
 $(document).ready(function(){
 	$(".team-carousel").owlCarousel({
-		margin:30,
+		margin:0,
 		loop:true,
 		dots:false,
 		center:true,
 		autoplayHoverPause:true,
 		autoplay:true,
-		nav:true,
-		responsive:{0:{items:2},600:{ items:2},1000:{items:3},1300:{items:3}}
+		responsive:{0:{items:2},600:{ items:2},1000:{nav:true,items:3},1300:{nav:true,items:3}}
 	});
 });
 
 
-letterCarousel('.First','.big-title');
+/* letterCarousel('.First','.big-title');
 function letterCarousel(parent_cls,child_cls) {
 	var e = jQuery(parent_cls+' '+child_cls),
 	t = jQuery(window).height();
@@ -95,7 +94,7 @@ function letterCarouselRight(parent_cls, child_cls) {
 		}
 	});
 }
-
+ */
 
 
 
