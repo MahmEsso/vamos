@@ -96,7 +96,69 @@ function letterCarouselRight(parent_cls, child_cls) {
 }
  */
 
+// Wait for DOM to be ready
+document.addEventListener('DOMContentLoaded', function() {
+	// Get your original HTML content
+	const marquee1 = document.getElementById('marquee1');
+	const marquee2 = document.getElementById('marquee2');
 
+	// Get the original text from your HTML
+	const originalText1 = marquee1.innerHTML;
+	const originalText2 = marquee2.innerHTML;
+
+	// Function to duplicate text for seamless scrolling
+	function duplicateForMarquee(element, originalHTML, repetitions = 15) {
+		// Clear original (it will be included in duplicates)
+		element.innerHTML = '';
+
+		// Create multiple copies
+		for (let i = 0; i < repetitions; i++) {
+			const clone = document.createElement('span');
+			clone.innerHTML = originalHTML;
+			// Add a separator
+			/* if (i < repetitions - 1) {
+				clone.innerHTML += ' • ';
+			} */
+			element.appendChild(clone);
+		}
+	}
+
+	// Duplicate the text
+	duplicateForMarquee(marquee1, originalText1, 20);
+	duplicateForMarquee(marquee2, originalText2, 20);
+
+	// Animation variables
+	let position1 = 0;
+	let position2 = 0;
+	const speed = 0.8;
+
+	// Animation function
+	function animateMarquees() {
+		// Get the actual width after content is duplicated
+		const width1 = marquee1.scrollWidth / 2;
+		const width2 = marquee2.scrollWidth / 2;
+
+		// First line: left to right (moves leftward)
+		position1 -= speed;
+		if (position1 <= -width1) {
+			position1 = 0;
+		}
+		marquee1.style.transform = `translateX(${position1}px)`;
+
+		// Second line: right to left (moves rightward)
+		position2 += speed;
+		if (position2 >= 0) {
+			position2 = -width2;
+		}
+		marquee2.style.transform = `translateX(${position2}px)`;
+
+		// Continue animation
+		requestAnimationFrame(animateMarquees);
+	}
+
+	// Start animation
+	animateMarquees();
+});
 
 
 const hotspots = document.getElementById('hotspots');
